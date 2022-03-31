@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="BDDTestAutomatioSuite">
+	<test thread-count="5" name="Amazon DDT">
+		<classes>
+			<class name="com.qa.DDT.AmazonDDTRunner" />
+			<class name="com.qa.Amazon.AmazonTestRunner" />
+		</classes>
+	</test> <!-- Amazon DDT -->
+</suite> <!-- BDDTestAutomatioSuite -->
