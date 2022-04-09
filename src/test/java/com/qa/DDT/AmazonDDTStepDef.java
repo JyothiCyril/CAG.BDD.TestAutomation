@@ -1,10 +1,12 @@
 package com.qa.DDT;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,13 +23,13 @@ import junit.framework.Assert;
 public class AmazonDDTStepDef {
 	WebDriver driver;
 	AmazonPages AmazonOR;
-	
+
 	@Given("^the browser is invoked$")
 	public void the_browser_is_invoked(){
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		AmazonOR = new AmazonPages(driver);
-		
+
 	}
 
 	@Then("^the url should be launched$")
@@ -43,15 +45,15 @@ public class AmazonDDTStepDef {
 
 	@Then("^select category and item name from the sheetname \"([^\"]*)\" and rowNum (\\d+)$")
 	public void select_category_and_item_name_from_the_sheetname_and_rowNum(String sheetName, int rowNum) throws InvalidFormatException, IOException {
-		
+
 		ExcelReader reader = new ExcelReader();
 		List<Map<String, String>> testData = reader.getData("D:\\Capgemini\\CAG.BDD.TestAutomation\\src\\test\\java\\com\\qa\\testdata\\TestData.xlsx", sheetName);
 		String Category = testData.get(rowNum).get("Category");
 		String ItemName = testData.get(rowNum).get("ItemName");
-		
+
 		AmazonOR.getCategory().selectByVisibleText(Category);
 		AmazonOR.getSearchTxtField().sendKeys(ItemName);
-		
+
 	}
 
 	@When("^Magnifier button is clicked$")
